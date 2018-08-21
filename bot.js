@@ -25,7 +25,7 @@ client.on('ready', () => {
 
 
 
-const adminprefix = "###";
+const adminprefix = "w";
 const devs = ['426295568688611328', '431150885549113344'];
  
 
