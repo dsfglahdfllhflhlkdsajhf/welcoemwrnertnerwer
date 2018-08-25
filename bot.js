@@ -22,7 +22,7 @@ client.on('ready', () => {
   client.user.setActivity(`AlphCodes | ${client.guilds.size}`, {type: "LOOKING"});
 });
 client.on('guildMemberAdd', (member,inviter )=> {
-     const welcomer =  member.guild.channels.find('name', 'wlc');
+     const welcomer =  member.guild.channels.find('name', 'chat');
     if(!welcomer) return;
       if(welcomer) {
          moment.locale('ar-ly');
