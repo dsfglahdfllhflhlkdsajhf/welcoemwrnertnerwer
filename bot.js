@@ -5,6 +5,14 @@ const moment = require('moment');
 const jimp = require('jimp');
 const Canvas = require('canvas');
  
+
+client.on('ready', Ryu => {
+  client.user.setGame("Alpha Codes.", "https://www.twitch.tv/idk");
+  console.log(`${client.username}, is fking ready ^,^`);
+});
+
+
+
 client.on('guildMemberAdd', member => {
      const welcomer =  member.guild.channels.find('name', 'chat');
 const w = ['w1.png'];
