@@ -111,7 +111,7 @@ welcomer.sendFile(canvas.toBuffer())
   console.log('2')
  console.log('3')
 
-     welcomer.send(`**joined by :** <@${inviter.id}> `);
+     welcomer.send(`**Joined By :** <@${inviter.id}> <:watchingyou:435898073676251137> `);
 
 
 
