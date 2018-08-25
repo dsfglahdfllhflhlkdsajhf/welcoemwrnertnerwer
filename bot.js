@@ -19,7 +19,7 @@ client.on('ready', () => {
       console.log(`ON ${client.guilds.size} Servers `);
     console.log(`---------------`);
   console.log(`Logged in as ${client.user.tag}!`);
-  client.user.setActivity(`${prefix}help | ${client.guilds.size}`, {type: "LOOKING"});
+  client.user.setActivity(`AlphCodes | ${client.guilds.size}`, {type: "LOOKING"});
 });
 client.on('guildMemberAdd', (member,inviter )=> {
      const welcomer =  member.guild.channels.find('name', 'wlc');
