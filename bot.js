@@ -26,7 +26,20 @@ const w = ['w1.png'];
             let ground = new Image;
             ground.src = Background;
             ctx.drawImage(ground, 0, 0, 400, 200);
-             
+             const wait = require('util').promisify(setTimeout);
+client.on('ready', () => {
+  wait(1000);
+             client.guilds.forEach(g => {
+    g.fetchInvites().then(guildInvites => {
+      invites[g.id] = guildInvites;
+    });
+  });
+                    });
+                       member.guild.fetchInvites().then(guildInvites => {
+                      const ei = invites[member.guild.id]; //دغوات
+                      const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses); //
+                      const inviter = client.users.get(invite.inviter.id);//
+
          
  
                 let url = member.user.displayAvatarURL.endsWith(".webp") ? member.user.displayAvatarURL.slice(100) + ".png" : member.user.displayAvatarURL;
