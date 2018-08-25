@@ -39,7 +39,7 @@ const w = ['w1.png'];
                         ctx.fontSize = '20px';
                         ctx.fillStyle = "#f1f1f1";
                         ctx.textAlign = "center";
-                        ctx.fillText(`welcome to Brix`, 300, 130);
+                        ctx.fillText(`welcome to ${member.guild.name}`, 300, 130);
                        
                         ctx.font = "bold 12px Arial";
                         ctx.fontSize = '20px';
@@ -59,7 +59,12 @@ const w = ['w1.png'];
                
                              
 welcomer.sendFile(canvas.toBuffer())
- 
+  console.log('1')
+  console.log('2')
+ console.log('3')
+
+     welcomer.send(`**joined by :** <@${inviter.id}> `);
+
  
  
      
@@ -89,34 +94,23 @@ client.on("ready", () => {
  
  
  
-client.on("guildMemberAdd", (member) => {
-    let channel = member.guild.channels.get("480852478196187138");
-    if (!channel) {
-        console.log("!the channel id it's not correct");
-        return;
-    }
-    if (member.id == client.user.id) {
-        return;
-    }
-    console.log('-');
-    var guild;
-    while (!guild)
-        guild = client.guilds.get("480852478196187136");
-    guild.fetchInvites().then((data) => {
-        data.forEach((Invite, key, map) => {
-            var Inv = Invite.code;
-            if (dat[Inv])
-                if (dat[Inv] < Invite.uses) {
-                    setTimeout(function() {
- channel.send(`**invited by** ${Invite.inviter} `) ;
-                    },1500);
- }
-            dat[Inv] = Invite.uses;
-       
-       });
+const wait = require('util').promisify(setTimeout);
+client.on('ready', () => {
+  wait(1000);
+  client.guilds.forEach(g => {
+    g.fetchInvites().then(guildInvites => {
+      invites[g.id] = guildInvites;
     });
+  });
 });
-
+client.on('guildMemberAdd', member => {
+  member.guild.fetchInvites().then(guildInvites => {
+    const ei = invites[member.guild.id];
+    const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
+    const inviter = client.users.get(invite.inviter.id);
+  
+  });
+});
 
 client.login(process.env.BOT_TOKEN);
 
